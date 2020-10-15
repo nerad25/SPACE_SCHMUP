@@ -11,9 +11,14 @@ public class Hero : MonoBehaviour
     public float speed = 30;
     public float rollMult = -45;
     public float pitchMult = 30;
+    public float gameRestartDelay = 2f;
 
     [Header("Set Dynamically")]
-    public float sheildLevel = 1;
+    [SerializeField]
+    private float _shieldLevel = 1;
+
+    //This variable holds a reference to the last triggered gameObject
+    private GameObject lastTriggeredGo = null;
 
     private void Awake()
     {
@@ -47,4 +52,48 @@ public class Hero : MonoBehaviour
         // Rotate the ship to make it feel more dynamic
         transform.rotation = Quaternion.Euler(yAxis*pitchMult,xAxis*rollMult, 0);
     }
+
+    void OnTriggerEnter(Collider other)
+    {
+        Transform rootT = other.gameObject.transform.root;
+        GameObject go = rootT.gameObject;
+        //print("Triggered: " + go.name);
+
+        //Make sure its not the same triggering go as last time
+        if (go == lastTriggeredGo)
+        {
+            return;
+        }
+        lastTriggeredGo = go;
+
+        if (go.tag == "Enemy")
+        {
+            shieldLevel--;
+            Destroy(go);
+        }
+        else
+        {
+            print("Triggered by non-Enemy: " + go.name);
+        }
+
+    }
+
+    public float shieldLevel
+    {
+        get {
+            return (_shieldLevel);
+        }
+        set
+        {
+            _shieldLevel = Mathf.Min(value, 4);
+            //If the shield is going to be set to less than zero
+            if (value < 0)
+            {
+                Destroy(this.gameObject);
+                //Tell main.s to restart the game after a delay
+                Main.S.DelayedRestart(gameRestartDelay);
+            }
+        }
+    }
+
 }

@@ -23,7 +23,7 @@ public class Shield : MonoBehaviour
     void Update()
     {
         //Read current shield levels from Hero singleton
-        int currLevel = Mathf.FloorToInt(Hero.S.sheildLevel);
+        int currLevel = Mathf.FloorToInt(Hero.S.shieldLevel);
 
         //If this is different from levelShown
         if (levelShown != currLevel)
