@@ -56,7 +56,6 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -81,7 +80,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!135 &2583581180241996510
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -106,7 +104,7 @@ GameObject:
   - component: {fileID: 2583581180488247042}
   - component: {fileID: 2583581180488247041}
   - component: {fileID: 5957265160427273967}
-  - component: {fileID: -8143042738429256056}
+  - component: {fileID: -2944925727466997854}
   m_Layer: 9
   m_Name: Enemy_4
   m_TagString: Enemy
@@ -169,7 +167,7 @@ MonoBehaviour:
   offLeft: 0
   offUp: 0
   offDown: 0
---- !u!114 &-8143042738429256056
+--- !u!114 &-2944925727466997854
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -241,7 +239,6 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -266,7 +263,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!135 &2583581180905866953
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -336,7 +332,6 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -361,7 +356,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!135 &2583581181344508872
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -431,7 +425,6 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -456,7 +449,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!135 &2583581181607364736
 SphereCollider:
   m_ObjectHideFlags: 0

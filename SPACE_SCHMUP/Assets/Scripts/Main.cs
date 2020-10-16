@@ -6,11 +6,13 @@ using UnityEngine.SceneManagement;
 public class Main : MonoBehaviour
 {
     static public Main S;
+    static Dictionary<WeaponType, WeaponDefinition> WEAP_DICT;
 
     [Header("Set in Inspector")]
     public GameObject[] prefabEnemies;                  //Array for enemies
     public float enemySpawnPerSecond = 0.5f;            // num of enemies per second
     public float enemyDefaultPadding = 1.5f;            //Padding for position
+    public WeaponDefinition[] weaponDefinitions;
 
     private BoundsCheck bndCheck;
 
@@ -20,7 +22,14 @@ public class Main : MonoBehaviour
         //Set bnd check to reference the bounds check component on this gameObject
         bndCheck = GetComponent<BoundsCheck>();
         //Invoke spawn enemy once (in 2 seconds, based on default values)
-        Invoke("SpawnEnemy", 1f/enemySpawnPerSecond);
+        Invoke("SpawnEnemy", 1f / enemySpawnPerSecond);
+
+        // a generic Dictionary with WeaponType as the key
+        WEAP_DICT = new Dictionary<WeaponType, WeaponDefinition>();
+        foreach (WeaponDefinition def in weaponDefinitions)
+        {
+            WEAP_DICT[def.type] = def;
+        }
     }
 
     public void SpawnEnemy()
@@ -43,7 +52,7 @@ public class Main : MonoBehaviour
         pos.y = bndCheck.camHeight + enemyPadding;
         go.transform.position = pos;
 
-        Invoke("SpawnEnemy", 1f/enemySpawnPerSecond);
+        Invoke("SpawnEnemy", 1f / enemySpawnPerSecond);
     }
 
     public void DelayedRestart(float delay)
@@ -56,16 +65,34 @@ public class Main : MonoBehaviour
         SceneManager.LoadScene("SampleScene");
     }
 
+    /// <summary>
+    /// Static function that gets a WeaponDefinition from the WEAP_DICT static
+    /// protected field of the Main class
+    /// </summary>
+    /// <returns> the WeaponDefinition or, if there is no WeaponDefinition with
+    /// the WeaponType passed in, returns a new WeaponDefinition with a 
+    /// WeaponType of none.</returns>
+    static public WeaponDefinition GetWeaponDefinition(WeaponType wt)
+    {
+        // check to make sure key exists in dictionary
+        if (WEAP_DICT.ContainsKey(wt))
+        {
+            return (WEAP_DICT[wt]);
+        }
+
+        // returns new WeaponDefinition with type none
+        return (new WeaponDefinition());
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }

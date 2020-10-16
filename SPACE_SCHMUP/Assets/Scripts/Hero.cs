@@ -22,6 +22,9 @@ public class Hero : MonoBehaviour
     //This variable holds a reference to the last triggered gameObject
     private GameObject lastTriggeredGo = null;
 
+    public delegate void WeaponFireDelegate();
+    public WeaponFireDelegate fireDelegate;
+
     private void Awake()
     {
         if (S == null)
@@ -32,6 +35,8 @@ public class Hero : MonoBehaviour
         {
             Debug.LogError("Hero.Awake() - Attempted to assign second Hero.S!");
         }
+
+        //fireDelegate += TempFire;
     }
 
     // Start is called before the first frame update
@@ -56,19 +61,29 @@ public class Hero : MonoBehaviour
 
         //Allow ship to fire
 
-        if (Input.GetKeyDown(KeyCode.Space))
+  //      if (Input.GetKeyDown(KeyCode.Space))
+   //     {
+    //        TempFire();            
+      //  }
+        
+        if (Input.GetAxis("Jump") == 1 && fireDelegate != null)
         {
-            TempFire();            
+            fireDelegate();
         }
     }
 
-    void TempFire()
+    /*void TempFire()
     {
         GameObject projGo = Instantiate<GameObject>(projectilePrefab);
         projGo.transform.position = transform.position;
         Rigidbody rigidB = projGo.GetComponent<Rigidbody>();
-        rigidB.velocity = Vector3.up * projectileSpeed;
-    }
+        //       rigidB.velocity = Vector3.up * projectileSpeed;
+
+        Projectile proj = projGo.GetComponent<Projectile>();
+        proj.type = WeaponType.blaster;
+        float tSpeed = Main.GetWeaponDefinition(proj.type).velocity;
+        rigidB.velocity = Vector3.up * tSpeed;
+    }*/
 
     void OnTriggerEnter(Collider other)
     {
